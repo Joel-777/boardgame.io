@@ -10,6 +10,7 @@ import { createStore, compose, applyMiddleware } from 'redux';
 import * as Actions from '../core/action-types';
 import * as ActionCreators from '../core/action-creators';
 import { SocketIO } from './transport/socketio';
+import { Local } from './transport/local';
 import { CreateGameReducer } from '../core/reducer';
 
 /**
@@ -202,7 +203,16 @@ class _ClientImpl {
 
     this.store = createStore(this.reducer, enhancer);
 
-    if (multiplayer) {
+    if (multiplayer && multiplayer.master) {
+      this.transport = new Local({
+        master: multiplayer.master,
+        store: this.store,
+        gameID: gameID,
+        playerID: playerID,
+        gameName: game.name,
+        numPlayers,
+      });
+    } else if (multiplayer) {
       this.transport = new SocketIO({
         store: this.store,
         gameID: gameID,
