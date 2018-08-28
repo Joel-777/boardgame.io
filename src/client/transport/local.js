@@ -10,6 +10,10 @@ import * as ActionCreators from '../../core/action-creators';
 import { InMemory } from '../../server/db/inmemory';
 import { Master } from '../../master/master';
 
+/**
+ * Creates a local version of the master that the client
+ * can interact with.
+ */
 export function LocalMaster(game) {
   const clientCallbacks = {};
 
@@ -52,7 +56,7 @@ export class Local {
    * @param {string} numPlayers - The number of players.
    * @param {string} server - The game server in the form of 'hostname:port'. Defaults to the server serving the client if not provided.
    */
-  constructor({ master, store, gameID, playerID, gameName, numPlayers } = {}) {
+  constructor({ master, store, gameID, playerID, gameName, numPlayers }) {
     this.master = master;
     this.store = store;
     this.gameName = gameName || 'default';
