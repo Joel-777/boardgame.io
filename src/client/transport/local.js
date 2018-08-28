@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 The boardgame.io Authors
+ * Copyright 2018 The boardgame.io Authors
  *
  * Use of this source code is governed by a MIT-style
  * license that can be found in the LICENSE file or at
@@ -60,6 +60,7 @@ export class Local {
     this.playerID = playerID || null;
     this.numPlayers = numPlayers || 2;
     this.gameID = this.gameName + ':' + this.gameID;
+    this.isConnected = true;
   }
 
   onUpdate(gameID, state, deltalog) {

@@ -7,7 +7,6 @@
  */
 
 import React from 'react';
-import { LocalMaster } from 'boardgame.io/master';
 import { Client } from 'boardgame.io/react';
 import TicTacToe from '../game';
 import Board from './board';
@@ -16,7 +15,7 @@ const App = Client({
   game: TicTacToe,
   board: Board,
   debug: false,
-  multiplayer: { master: LocalMaster(TicTacToe) },
+  multiplayer: { master: 'local' },
 });
 
 const Multiplayer = () => (
